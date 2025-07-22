@@ -1,0 +1,135 @@
+/* .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background: #fff;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5rem 1rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.company-name {
+  font-weight: 900;
+  color: #1db954;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.sidebar-links {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  width: 100%;
+}
+
+.sidebar-links li {
+  width: 100%;
+}
+
+.nav-link {
+  display: block;
+  width: 100%;
+  color: #1db954;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 10px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: background 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: #1db954;
+  color: #fff;
+}
+
+.sidebar-divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 1rem 0;
+}
+
+.sidebar-social {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.sidebar-social-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #1db954;
+  padding: 5px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sidebar-social-item:hover {
+  background-color: #e8f5e9;
+}
+
+.sidebar-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.sidebar-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+}
+/* 
+.sidebar-contact-item span{
+  color: #333;
+} */
+
+/* .hamburger-btn {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 999;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #1db954;
+}
+
+@media (max-width: 700px) {
+  .hamburger-btn {
+    display: block;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  } */
+
