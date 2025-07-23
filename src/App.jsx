@@ -13,6 +13,7 @@ import AskQuestion from './pages/Questions/askQuestions.jsx';
 import Question from './pages/Questions/Question.jsx';
 import UserProfile from './pages/Profile/UserProfile.jsx'
 import Landing from './pages/Landing/Landing.jsx';
+import SingleQuestionPage from './pages/Questions/SingleQuestionPage.jsx';
 
 
 function App() {
@@ -42,7 +43,9 @@ function App() {
                     <Route path='/chat' element={<ChatPage />} />
                     <Route path="/landing" element={<Landing />} />
                     <Route path="/askQuestion" element={<AskQuestion />} />
-                    <Route path="/question" element={<Question />} />
+                    <Route path="/questions/:id" element={<Question />} />
+                    <Route path="/questions" element={<Question />} />
+                    <Route path="/questions/:id" element={<SingleQuestionPage />} />
                     <Route path="/userProfile" element={<UserProfile />} />
                 </Routes>
             </BrowserRouter>

@@ -14,7 +14,7 @@ const AskQuestion = () => {
   const [category, setCategory] = useState('javascript');
   const navigate = useNavigate();
 
-  const authorId = '64b0c8f4d2e8f9b123456789'; // Replace with real logged-in user ID
+  const authorId = '64b0c8f4d2e8f9b123456789'; // Replace with real user ID after login
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const AskQuestion = () => {
         author: authorId,
       });
 
-      if (res.status === 200) {
+      if (res.status === 200 || res.status === 201) {
         const questionId = res.data.data?._id;
         alert('✅ Question posted successfully!');
         navigate(`/questions/${questionId}`);

@@ -3,7 +3,7 @@ import Sidebar from "../../components/Sidebars/Sidebar";
 import dp1 from "../../assets/dp1.jpg";
 import { Search, ShieldUser, Inbox, Trophy } from "lucide-react";
 
-const API_BASE_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:4000";
+const API_BASE_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:5000";
 
 const Home = () => {
   const [questions, setQuestions] = useState([]);
@@ -11,9 +11,11 @@ const Home = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/questions`);
+        const response = await fetch(
+          `${API_BASE_URL}/api/question/getAllQuestions`
+        );
         const data = await response.json();
-        setQuestions(data);
+        setQuestions(data.data || []);
       } catch (error) {
         console.error("Error fetching questions:", error);
       }
@@ -76,16 +78,15 @@ const Home = () => {
                   key={q._id}
                   className="border p-4 rounded-md shadow hover:shadow-md transition"
                 >
-                  <h3 className="text-lg font-bold text-blue-600">
-                    {q.title}
-                  </h3>
+                  <h3 className="text-lg font-bold text-blue-600">{q.title}</h3>
                   <div className="text-sm text-gray-500 mt-1">
                     Asked by <strong>{q.askedBy}</strong> ·{" "}
                     {new Date(q.createdAt).toLocaleString()}
                   </div>
                   <div className="flex items-center space-x-4 mt-2">
-                    <span>💬 {q.answers || 0} Answers</span>
-                    <span>👍 {q.votes || 0} Votes</span>
+                    <span>
+                      Upvotes: {q.votes?.up ?? 0} | Downvotes: {q.votes?.down ?? 0}
+                    </span>
                     <div className="flex gap-2 flex-wrap">
                       {q.tags?.map((tag) => (
                         <span
@@ -99,6 +100,7 @@ const Home = () => {
                   </div>
                 </div>
               ))}
+
             </div>
           )}
         </main>
