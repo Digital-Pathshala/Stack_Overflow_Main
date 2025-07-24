@@ -58,7 +58,7 @@ const RegisterPage = () => {
         fullName: formData.fullName,
         email: formData.email,
         password: formData.password,
-        isVerified: true // This will be ignored by backend if not used, but harmless
+        isVerified: true
       });
 
       if (response.data.success) {

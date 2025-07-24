@@ -3,6 +3,9 @@ import { get, getRooms, getUsers } from '../../services/apiService';
 import socketService from '../../services/socketService';
 import { useAuth } from '../../context/AuthContext';
 import Sidebar from '../../components/Sidebars/Sidebar';
+import dp1 from "../../assets/dp1.jpg";
+import { Search, ShieldUser, Inbox, Trophy } from "lucide-react";
+
 
 const HIGHLIGHT_DURATION = 1200;
 
@@ -174,6 +177,42 @@ const ChatPage = () => {
 
   return (
     <div style={{ display: 'flex', maxWidth: 1100, margin: '0 auto' }}>
+      {/* Header */}
+      <header className="bg-white border-b border-gray-300 shadow-sm">
+        <div className="flex items-center justify-between px-4 py-2">
+          <div className="flex items-center space-x-4">
+            <img src={dp1} alt="Logo" className="w-10 h-10 rounded-full" />
+            <span className="font-bold text-xl">
+              <span style={{ color: "#1db954" }}>Digital</span>{" "}
+              <span className="font-normal">Pathsala</span>
+            </span>
+          </div>
+
+          <div className="flex-1 max-w-2xl mx-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <input
+                type="text"
+                placeholder="Search..."
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <Inbox />
+            <ShieldUser />
+            <Trophy />
+            <button className="p-2">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Section */}
       <Sidebar />
       <div style={{ width: 240, marginRight: 24 }}>
         <h3>Rooms</h3>

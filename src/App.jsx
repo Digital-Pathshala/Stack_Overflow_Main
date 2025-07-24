@@ -1,12 +1,12 @@
-import LoginPage from './pages/Login/LoginPage';
-import RegisterPage from './pages/Register/RegisterPage';
+import LoginPage from './auth/Login/LoginPage.jsx';
+import RegisterPage from './auth/Register/RegisterPage.jsx';
 import Home from './pages/Home/Home';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Dashboard from './Dashboard'
 import PageNotFound from './PageNotFound';
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google'
 import Sidebar from './components/Sidebars/Sidebar';
-import Footer from './components/footer/Footer';
+import Footer from './components/Footer/Footer.jsx';
 import ChatPage from './pages/Chat/ChatPage';
 import { AuthProvider } from './context/AuthContext.jsx';
 import AskQuestion from './pages/Questions/askQuestions.jsx';
@@ -35,7 +35,7 @@ function App() {
                     <Route path='/goooglelogin' element={<GoogleLogin />} />
                     <Route path='/login' element={<LoginPage />} />
                     <Route path='/register' element={<RegisterPage />} />
-                    <Route path='/dashboard' element={<Dashboard />} />
+                    {/* <Route path='/dashboard' element={<Dashboard />} /> */}
                     {/* <Route path='*' element={<PageNotFound/>}/>  */}
                     <Route path='/sidebar' element={<Sidebar />} />
                     <Route path='/' element={<Home />} />

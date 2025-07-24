@@ -29,7 +29,7 @@ const LoginPage = () => {
       if (response.data.success) {
         localStorage.setItem('token', response.data.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.data.user));
-
+        
         // Redirect based on user role
         if (response.data.data.user.role === 'admin') {
           navigate('/admin/dashboard');
