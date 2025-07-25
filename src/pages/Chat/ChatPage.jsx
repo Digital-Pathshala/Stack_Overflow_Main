@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { get, getRooms, getUsers } from '../../services/apiService';
 import socketService from '../../services/socketService';
-import { useAuth } from '../../context/AuthContext';
+// import { useAuth } from '../../context/AuthContext';
 import Sidebar from '../../components/Sidebars/Sidebar';
 import dp1 from "../../assets/dp1.jpg";
 import { Search, ShieldUser, Inbox, Trophy } from "lucide-react";
-
+import { useAuth } from '../../context/AuthContext';
 
 const HIGHLIGHT_DURATION = 1200;
+
 
 const ChatPage = () => {
   const { user, token } = useAuth();
