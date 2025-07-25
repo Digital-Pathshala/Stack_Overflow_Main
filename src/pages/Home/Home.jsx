@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebars/Sidebar";
 import dp1 from "../../assets/dp1.jpg";
 import { Search, ShieldUser, Inbox, Trophy } from "lucide-react";
+import Footer from "../../components/Footer/Footer";
 
 const API_BASE_URL = "http://127.0.0.1:5000";
 
@@ -152,6 +153,7 @@ const Home = () => {
           </div>
         </main>
       </div>
+      <Footer/>
     </div>
   );
 };

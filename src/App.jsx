@@ -14,6 +14,7 @@ import Landing from './pages/Landing/Landing.jsx';
 import SingleQuestionPage from './pages/Questions/SingleQuestionPage.jsx';
 import TagsPage from './pages/TagsPage/TagsPage.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
+import UsersPage from './pages/UsersPage/UsersPage.jsx';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                 <Routes>
                     <Route path='/goooglelogin' element={<GoogleLogin />} />
                     <Route path='/login' element={<LoginPage />} />
+                    <Route path='/users' element={<UsersPage />} />
                     <Route path='/register' element={<RegisterPage />} />
                     {/* <Route path='/dashboard' element={<Dashboard />} /> */}
                     {/* <Route path='*' element={<PageNotFound/>}/>  */}

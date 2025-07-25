@@ -1,99 +1,101 @@
-// Footer.jsx
 import React from "react";
-import logo from "../../assets/logo.jpg"
-
+import dp1 from "../../assets/dp1.jpg";
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="footer-grid">
-        {/* Brand Column */}
-        <div className="footer-column">
-          <div className="brand-info">
-            <div className="logo-container">
-              <img src={logo} alt="Digital Pathshala" className="footer-logo" />
-              <h3>Digital Pathshala</h3>
-            </div>
-            <p className="tagline">
-              Empowering digital futures through quality education
+    <footer className="bg-gray-900 text-gray-300">
+      <div className="max-w-7xl mx-auto px-6 py-10 space-y-10">
+
+        {/* Brand Info */}
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <img
+              src={dp1}
+              alt="Digital Pathshala"
+              className="w-12 h-12 rounded-full"
+            />
+            <h3 className="text-white font-bold text-lg">Digital Pathshala</h3>
+          </div>
+          <p className="text-sm leading-6 mb-4">
+            Empowering digital futures through quality education.
+          </p>
+
+          <div className="text-sm space-y-2">
+            <p>
+              <span className="font-semibold">Location:</span> Itahari, Sunsari, Koshi Province
+            </p>
+            <p>
+              <span className="font-semibold">Phone:</span>
+              <a href="tel:+9779816366094" className="hover:text-white ml-1">9816366094</a>,
+              <a href="tel:+9779824345939" className="hover:text-white ml-1">9824345939</a>
+            </p>
+            <p>
+              <span className="font-semibold">Email:</span>
+              <a href="mailto:digitalpathshalanp@gmail.com" className="hover:text-white ml-1">
+                digitalpathshalanp@gmail.com
+              </a>
+            </p>
+            <p>
+              <span className="font-semibold">Website:</span>
+              <a
+                href="https://digitalpathshalanepal.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white ml-1"
+              >
+                digitalpathshalanepal.com
+              </a>
             </p>
           </div>
+        </div>
 
-          <div className="contact-details">
-            <p>
-              <span>Location:</span> Itahari, Sunsari, Koshi Province
-            </p>
-            <p>
-              <span>Phone:</span> 9816366094, 9824345939
-            </p>
-            <p>
-              <span>Email:</span> digitalpathshalanp@gmail.com
-            </p>
-            <p>
-              <span>Website:</span> www.digitalpathshalanepal.com
-            </p>
-            <p>
-              <span>PAN:</span> 143009342
-            </p>
+        {/* Useful Links Section */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm border-t border-gray-700 pt-6">
+          <div>
+            <h4 className="text-white font-bold mb-3">Products</h4>
+            <ul className="space-y-2">
+              <li><a href="/courses" className="hover:text-white">Courses</a></li>
+              <li><a href="/teams" className="hover:text-white">Teams</a></li>
+              <li><a href="/advertising" className="hover:text-white">Advertising</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-bold mb-3">Help</h4>
+            <ul className="space-y-2">
+              <li><a href="/help" className="hover:text-white">Help Center</a></li>
+              <li><a href="/contact" className="hover:text-white">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-bold mb-3">Company</h4>
+            <ul className="space-y-2">
+              <li><a href="/about" className="hover:text-white">About</a></li>
+              <li><a href="/careers" className="hover:text-white">Work Here</a></li>
+              <li><a href="/press" className="hover:text-white">Press</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-bold mb-3">Legal</h4>
+            <ul className="space-y-2">
+              <li><a href="/privacy" className="hover:text-white">Privacy Policy</a></li>
+              <li><a href="/terms" className="hover:text-white">Terms of Service</a></li>
+            </ul>
           </div>
         </div>
 
-        {/* Support Column */}
-        <div className="footer-column">
-          <h4 className="footer-heading">Support Channels</h4>
-          <ul className="support-list">
-            <li>
-              <i className="fab fa-whatsapp"></i>
-              <span>WhatsApp: 9816366094</span>
-            </li>
-            <li>
-              <i className="fab fa-telegram"></i>
-              <span>Telegram: 9816366094</span>
-            </li>
-            <li>
-              <i className="fas fa-envelope"></i>
-              <span>Email Support</span>
-            </li>
-            <li>
-              <i className="fas fa-headset"></i>
-              <span>Chat Support</span>
-            </li>
-          </ul>
-        </div>
-
-        {/* Connect Column */}
-        <div className="footer-column">
-          <h4 className="footer-heading">Connect With Us</h4>
-          <div className="social-grid">
-            <a href="facebook.com/profile.php?id=100094408225878" className="social-item">
-              <i className="fab fa-facebook-f"></i>
-              <span>Facebook</span>
-            </a>
-            <a href="github.com/maheshbasnet089" className="social-item">
-              <i className="fab fa-github"></i>
-              <span>GitHub</span>
-            </a>
-            <a href="https://www.youtube.com/@digitalpathshala999" className="social-item">
-              <i className="fab fa-youtube"></i>
-              <span>YouTube</span>
-            </a>
-            <a href="linkedin.com/company/digital-pathshala089" className="social-item">
-              <i className="fab fa-linkedin-in"></i>
-              <span>LinkedIn</span>
-            </a>
+        {/* Bottom Section */}
+        <div className="border-t border-gray-700 py-4 text-center text-sm">
+          <p className="mb-2">
+            Copyright © {new Date().getFullYear()} Digital Pathshala. All rights reserved.
+          </p>
+          <div className="space-x-3">
+            <a href="/terms" className="hover:text-white">Terms & Conditions</a>
+            <span>|</span>
+            <a href="/privacy" className="hover:text-white">Privacy Policy</a>
           </div>
-        </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="footer-bottom">
-        <div className="copyright">
-          Copyright © 2025 Digital Pathshala. All rights reserved.
-        </div>
-        <div className="legal-links">
-          <a href="#">Terms & Conditions</a>
-          <span>|</span>
-          <a href="#">Privacy Policy</a>
         </div>
       </div>
     </footer>

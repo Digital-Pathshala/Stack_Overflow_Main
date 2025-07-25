@@ -4,9 +4,9 @@ import {
   House,
   MessageSquare,
   Tags,
-  Bookmark,
   Swords,
 } from 'lucide-react';
+import { FaUsers } from "react-icons/fa6";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -44,11 +44,11 @@ const Sidebar = () => {
         </Link>
 
         <Link
-          to="/saves"
+          to="/users"
           className="flex items-center space-x-3 p-2 text-gray-600 hover:bg-gray-100 rounded"
         >
-          <Bookmark className="w-4 h-4" />
-          <span>Saves</span>
+          <FaUsers className="w-4 h-4" />
+          <span>Users</span>
         </Link>
 
         <Link
