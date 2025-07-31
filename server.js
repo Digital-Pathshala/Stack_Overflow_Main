@@ -11,6 +11,7 @@ import chatRoutes from './src/routes/chatRoutes.js';
 import questionRoutes from './src/routes/questionRoutes.js';
 import tagRoutes from './src/routes/tagRoutes.js';
 import profileRoutes from './src/routes/profileRoutes.js';
+import userProfileRoutes from './src/routes/userProfileRoutes.js';
 import answerRoutes from './src/routes/answerRoutes.js';
 import adminRoutes from './src/routes/adminRoutes.js';
 import dashboardRoutes from './src/routes/dashboardRoutes.js';
@@ -101,6 +102,7 @@ app.use('/api/questions', questionRoutes);
 app.use('/api/question', questionRoutes); // Alias for frontend compatibility
 app.use('/api/tags', tagRoutes);
 app.use('/api/profile', profileRoutes);
+app.use('/api/profile', userProfileRoutes);
 app.use('/api/answer', answerRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/dashboard', dashboardRoutes);
