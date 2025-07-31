@@ -9,37 +9,17 @@ const roomSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
-    trim: true
+    default: ''
   },
-  isPrivate: {
-    type: Boolean,
-    default: false
-  },
-  members: [{
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    },
-    joinedAt: {
-      type: Date,
-      default: Date.now
-    },
-    role: {
-      type: String,
-      enum: ['member', 'moderator', 'admin'],
-      default: 'member'
-    }
-  }],
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  tags: [{
-    type: String,
-    trim: true
-  }],
+  isPrivate: {
+    type: Boolean,
+    default: false
+  },
   activeUsers: [{
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -53,12 +33,19 @@ const roomSchema = new mongoose.Schema({
   messageCount: {
     type: Number,
     default: 0
+  },
+  maxUsers: {
+    type: Number,
+    default: 100
   }
 }, {
   timestamps: true
 });
 
-roomSchema.index({ tags: 1 });
+// Index for efficient querying
+roomSchema.index({ name: 1 });
+roomSchema.index({ createdBy: 1 });
 
 const Room = mongoose.model('Room', roomSchema);
+
 export default Room;

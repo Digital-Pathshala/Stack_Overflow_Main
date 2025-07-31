@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post("/createQuestion", createQuestion);
 router.get("/getAllQuestions", getAllQuestions);
+router.get("/", getAllQuestions); // Root route for /api/questions
 router.get("/getQuestionsById/:id", getQuestionByid);
 router.delete("/deleteQuestionsById/:id", deleteQuestionsById);
 router.put("/upvoteQuestion/:id", upvoteQuestion);

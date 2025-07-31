@@ -32,7 +32,7 @@ const socketHandler = (io) => {
     );
 
     // Join a room
-    socket.on("joinRoom", async (roomName) => {
+    socket.on("join-room", async (roomName) => {
       try {
         socket.join(roomName);
 
@@ -76,7 +76,7 @@ const socketHandler = (io) => {
     });
 
     // Leave a room
-    socket.on("leaveRoom", async (roomName) => {
+    socket.on("leave-room", async (roomName) => {
       try {
         socket.leave(roomName);
 
@@ -100,7 +100,7 @@ const socketHandler = (io) => {
     });
 
     // Send message
-    socket.on("sendMessage", async (data) => {
+    socket.on("send-message", async (data) => {
       try {
         const { message, room, isCode, language, replyTo } = data;
 
@@ -153,13 +153,13 @@ const socketHandler = (io) => {
     // Typing indicator
     socket.on("typing", (data) => {
       socket.to(data.room).emit("user-typing", {
-        user: socket.user.username,
+        user: socket.user,
         isTyping: data.isTyping,
       });
     });
 
     // Message reactions
-    socket.on("addReaction", async (data) => {
+    socket.on("add-reaction", async (data) => {
       try {
         const { messageId, emoji } = data;
 

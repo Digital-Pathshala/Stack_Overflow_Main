@@ -21,6 +21,17 @@ import Question from "./src/models/Question.js";
 import jwt from "jsonwebtoken";
 import tagRouter from "./src/routes/tagRoutes.js";
 import answerRoutes from "./src/routes/answerRoutes.js";
+import { createServer } from 'http';
+import { Server } from 'socket.io';
+import session from 'express-session';
+import passport from 'passport';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import User from './src/models/User.js';
+import chatRoutes from './src/routes/chatRoutes.js';
+import socketHandler from './src/services/socketHandler.js';
+import cookieParser from 'cookie-parser';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -87,15 +98,63 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Socket.io setup
+// Use cookieParser and session for Socket.IO auth
+app.use(cookieParser());
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'your-session-secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Passport Google OAuth setup (if not already present)
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: 'http://localhost:5000/api/auth/google/callback',
+}, async (accessToken, refreshToken, profile, done) => {
+  try {
+    let user = await User.findOne({ email: profile.emails[0].value });
+    if (!user) {
+      user = await User.create({
+        fullName: profile.displayName,
+        email: profile.emails[0].value,
+        password: 'google-oauth',
+        avatar: profile.photos[0]?.value,
+        isVerified: true,
+      });
+    }
+    return done(null, user);
+  } catch (err) {
+    return done(err, null);
+  }
+}));
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err, null);
+  }
+});
+
+// Add chat routes
+app.use('/api/chats', chatRoutes);
+
+// Socket.io setup (after all routes and middleware)
 const io = new Server(server, {
   path: "/socket.io",
   cors: {
     origin: "http://localhost:5173",
     methods: ["GET", "POST"],
-  },
+    credentials: true
+  }
 });
-
 socketHandler(io);
 
 app.post("/api/auth/register", async (req, res) => {
@@ -563,8 +622,9 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = 5000;
-app.listen(PORT, () => {
+// Start the server using server.listen (not app.listen)
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => {
   console.log("");
   console.log("🚀 ========================================");
   console.log(`Server running on port ${PORT}`);

@@ -3,15 +3,39 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
-import userRoutes from './routes/userRoute.js';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
+import userRoutes from './src/routes/userRoute.js';
 import authRoutes from './src/routes/authRoutes.js';
+import chatRoutes from './src/routes/chatRoutes.js';
+import questionRoutes from './src/routes/questionRoutes.js';
+import tagRoutes from './src/routes/tagRoutes.js';
+import profileRoutes from './src/routes/profileRoutes.js';
+import answerRoutes from './src/routes/answerRoutes.js';
+import adminRoutes from './src/routes/adminRoutes.js';
+import dashboardRoutes from './src/routes/dashboardRoutes.js';
 import session from 'express-session';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import User from './src/models/User.js';
+import socketHandler from './src/services/socketHandler.js';
 
 dotenv.config();
 const app = express();
+const server = createServer(app);
+
+// Socket.IO setup
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+    credentials: true
+  },
+  path: "/socket.io"
+});
+
+// Initialize socket handler
+socketHandler(io);
 
 // Middleware
 app.use(cors({
@@ -72,6 +96,14 @@ mongoose.connect(process.env.MONGODB_URI)
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/chats', chatRoutes);
+app.use('/api/questions', questionRoutes);
+app.use('/api/question', questionRoutes); // Alias for frontend compatibility
+app.use('/api/tags', tagRoutes);
+app.use('/api/profile', profileRoutes);
+app.use('/api/answer', answerRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -83,7 +115,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  console.log(`Socket.IO server is ready`);
 });

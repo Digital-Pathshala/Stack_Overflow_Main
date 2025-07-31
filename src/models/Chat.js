@@ -13,12 +13,8 @@ const chatSchema = new mongoose.Schema({
   },
   room: {
     type: String,
-    default: 'general',
-    required: true
-  },
-  timestamp: {
-    type: Date,
-    default: Date.now
+    required: true,
+    default: 'general'
   },
   isCode: {
     type: Boolean,
@@ -28,37 +24,29 @@ const chatSchema = new mongoose.Schema({
     type: String,
     default: null
   },
-  reactions: [{
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    },
-    emoji: String,
-    timestamp: {
-      type: Date,
-      default: Date.now
-    }
-  }],
   replyTo: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Chat',
     default: null
   },
-  edited: {
-    type: Boolean,
-    default: false
-  },
-  editedAt: {
-    type: Date,
-    default: null
-  }
+  reactions: [{
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    emoji: {
+      type: String,
+      required: true
+    }
+  }]
 }, {
   timestamps: true
 });
 
 // Index for efficient querying
-chatSchema.index({ room: 1, timestamp: -1 });
+chatSchema.index({ room: 1, createdAt: -1 });
 chatSchema.index({ sender: 1 });
 
 const Chat = mongoose.model('Chat', chatSchema);
+
 export default Chat;
