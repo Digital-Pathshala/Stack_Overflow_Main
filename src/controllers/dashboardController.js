@@ -3,6 +3,8 @@ import Question from "../models/Question.js";
 
 export const getDashboardStats = async (req, res) => {
   try {
+    console.log("Fetching dashboard stats...");
+    
     // Get current counts
     const totalUsers = await User.countDocuments();
     const adminUsers = await User.countDocuments({ role: "admin" });
@@ -10,6 +12,15 @@ export const getDashboardStats = async (req, res) => {
     const totalQuestions = await Question.countDocuments();
     const openQuestions = await Question.countDocuments({ status: "open" });
     const closedQuestions = await Question.countDocuments({ status: "closed" });
+
+    console.log("Dashboard counts:", {
+      totalUsers,
+      adminUsers,
+      regularUsers,
+      totalQuestions,
+      openQuestions,
+      closedQuestions
+    });
 
     // Get historical data for last 6 months
     const sixMonthsAgo = new Date();
@@ -50,6 +61,8 @@ export const getDashboardStats = async (req, res) => {
       },
       { $sort: { "_id.year": 1, "_id.month": 1 } },
     ]);
+
+    console.log("Growth data:", { userGrowth, questionGrowth });
 
     res.status(200).json({
       success: true,
