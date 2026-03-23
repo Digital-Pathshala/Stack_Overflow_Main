@@ -1,6 +1,7 @@
 import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 
+// Admin profile management
 export const getAdminProfile = async (req, res) => {
   try {
     const admin = await User.findOne({ role: 'admin' }).select('-password');
